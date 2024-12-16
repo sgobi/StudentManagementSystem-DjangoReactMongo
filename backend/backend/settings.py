@@ -79,12 +79,28 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+	'default': {
+    	'ENGINE': 'djongo',
+    	'NAME': 'studentManagementSystemDb',  # Replace with your MongoDB database name
+    	'CLIENT': {
+        	'host': 'localhost',  # MongoDB host
+        	'port': 27017,   	# MongoDB port
+        	# If authentication is enabled, add these:
+        	# 'username': '<your_username>',
+        	# 'password': '<your_password>',
+        	# 'authSource': '<authentication_database>',
+    	}
+	}
 }
+
 
 
 # Password validation
