@@ -1,23 +1,25 @@
-import React from 'react';
+import React,{Component} from 'react';
 import {Modal, Col, Row, Form, Button} from 'react-bootstrap';
 import {FormControl, FormGroup, FormLabel} from 'react-bootstrap';
-import { addStudent } from '../services/StudentService';
+import { updateStudent } from '../../services/StudentService';
 
 
-const AddStudentModal = (props) => {
+
+const UpdateStudentModal = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addStudent(e.target)
+        updateStudent(props.student.studentId, e.target)
         .then((result)=>{
             alert(result);
             props.setUpdated(true);
             props.onHide();
+
         },
         (error)=>{
-            alert("Failed to Add Student");
+            alert("Failed to Update Student");
         })
-    }
+    };
 
     return(
         <div className="container">
@@ -30,7 +32,7 @@ const AddStudentModal = (props) => {
 
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        Fill In Student Information
+                        Update Student Information
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -39,23 +41,24 @@ const AddStudentModal = (props) => {
                             <Form onSubmit={handleSubmit}>
                                 <Form.Group controlId="FirstName">
                                     <Form.Label>First Name</Form.Label>
-                                    <Form.Control type="text" name="FirstName" required placeholder="" />
+                                    <Form.Control type="text" name="FirstName" required defaultValue={props.student.FirstName} placeholder="" />
                             </Form.Group>
+
                             <Form.Group controlId="LastName">
                                     <Form.Label>Last Name</Form.Label>
-                                    <Form.Control type="text" name="LastName" required placeholder="" />
+                                    <Form.Control type="text" name="LastName" required defaultValue={props.student.LastName} placeholder="" />
                             </Form.Group>
                             <Form.Group controlId="RegistrationNo">
                                     <Form.Label>Registration No.</Form.Label>
-                                    <Form.Control type="text" name="RegistrationNo" required placeholder="" />
+                                    <Form.Control type="text" name="RegistrationNo" required defaultValue={props.student.RegistrationNo} placeholder="" />
                             </Form.Group>
                             <Form.Group controlId="Email">
                                     <Form.Label>Email</Form.Label>
-                                    <Form.Control type="text" name="Email" required placeholder="" />
+                                    <Form.Control type="text" name="Email" required defaultValue={props.student.Email} placeholder="" />
                             </Form.Group>
                             <Form.Group controlId="Course">
                                     <Form.Label>Course</Form.Label>
-                                    <Form.Control type="text" name="Course" required placeholder="" />
+                                    <Form.Control type="text" name="Course" required defaultValue={props.student.Course} placeholder="" />
                             </Form.Group>
                             <Form.Group>
                                 <p></p>
@@ -78,4 +81,6 @@ const AddStudentModal = (props) => {
     );
 };
 
-export default AddStudentModal;
+
+export default UpdateStudentModal;
+
