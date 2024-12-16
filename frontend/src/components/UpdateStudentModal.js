@@ -13,6 +13,8 @@ const UpdateStudentModal = (props) => {
         .then((result)=>{
             alert(result);
             props.setUpdated(true);
+            props.onHide();
+
         },
         (error)=>{
             alert("Failed to Update Student");
