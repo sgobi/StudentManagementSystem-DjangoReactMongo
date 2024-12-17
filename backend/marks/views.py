@@ -33,3 +33,8 @@ class MarksView(APIView):
             serializer.save()
             return JsonResponse("Marks Created Successfully", safe=False)
         return JsonResponse("Failed to Add Marks", safe=False)
+    
+    def delete(self, request, pk=None):
+        marks_to_delete = Marks.objects.get(marksId=pk)
+        marks_to_delete.delete()
+        return JsonResponse("Student Deleted Successfully", safe=False)

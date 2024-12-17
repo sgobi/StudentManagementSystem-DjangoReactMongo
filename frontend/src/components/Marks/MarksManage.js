@@ -5,15 +5,16 @@ import {Button,ButtonToolbar } from 'react-bootstrap';
 import { FaEdit } from 'react-icons/fa';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 
-import { getMarks } from '../../services/MarksService';
+import { getMarks, deleteMarks } from '../../services/MarksService';
 
 
 const MarksManage =  () => {
   console.log('HelloWorld component rendered');
    const [marks,setMarks] = useState([]);
+    const [isUpdated, setIsUpdated] = useState(false);
    useEffect(() => {
        let mounted = true;
-       if(marks.length) // && !isUpdated)
+       if(marks.length && !isUpdated)
          {
           console.log('Marks data already loaded:', marks);
         return;
@@ -26,10 +27,22 @@ const MarksManage =  () => {
          })
        return () => {
           mounted = false;
-          // setIsUpdated(false);
+          setIsUpdated(false);
        }
-     }, [marks])
-
+     }, [isUpdated, marks])
+    const handleDelete = (e, marksId) => {
+        if(window.confirm('Are you sure ?')){
+            e.preventDefault();
+            deleteMarks(marksId)
+            .then((result)=>{
+                alert(result);
+                setIsUpdated(true);
+            },
+            (error)=>{
+                alert("Failed to Delete Marks");
+            })
+        }
+    };
     return (
       <div className="container-fluid side-container">
         <div className="row side-row" >
@@ -51,7 +64,7 @@ const MarksManage =  () => {
                   { 
                   marks.map((mark,index) =>
 
-                  <tr key={index}>
+                  <tr key={mark.marksId}>
                         <td>{index +1}</td>
                <td>{mark.studentId}</td>
                <td>{mark.Course}</td>
@@ -67,7 +80,10 @@ const MarksManage =  () => {
           
                   <td>
 
-                  <Button className="mr-2" variant="danger"><RiDeleteBin5Line /></Button>
+                  <Button className="mr-2" variant="danger"    onClick={event => handleDelete(event,mark.marksId)}>
+                  <RiDeleteBin5Line />
+                    
+                    </Button>
                   <span>&nbsp;&nbsp;&nbsp;</span>
                   <Button className="mr-2">
                         <FaEdit />
