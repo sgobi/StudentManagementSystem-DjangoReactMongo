@@ -2,6 +2,9 @@
 import React,{ useEffect, useState }from 'react';
 import {Table} from 'react-bootstrap';
 import {Button,ButtonToolbar } from 'react-bootstrap';
+import { FaEdit } from 'react-icons/fa';
+import { RiDeleteBin5Line } from 'react-icons/ri';
+
 import { getMarks } from '../../services/MarksService';
 
 
@@ -34,21 +37,22 @@ const MarksManage =  () => {
             <Table striped bordered hover className="react-bootstrap-table" id="dataTable">
                 <thead>
                 <tr>
-                  <th >ID</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Registration No</th>
-                  <th>Email</th>
-                  <th>Course</th>
+                <th >No</th>
+                  <th >MarksID</th>
+                  <th>Student ID</th>
+       
+                  <th>Marks</th>
                   <th>Action</th>
                 </tr>
                 </thead>
 
          
                <tbody>
-                  { marks.map((mark) =>
+                  { 
+                  marks.map((mark,index) =>
 
-                  <tr key={mark.marksId}>
+                  <tr key={index}>
+                        <td>{index +1}</td>
                <td>{mark.studentId}</td>
                <td>{mark.Course}</td>
 
@@ -63,7 +67,12 @@ const MarksManage =  () => {
           
                   <td>
 
-                  {/* <Button className="mr-2" variant="danger"
+                  <Button className="mr-2" variant="danger"><RiDeleteBin5Line /></Button>
+                  <span>&nbsp;&nbsp;&nbsp;</span>
+                  <Button className="mr-2">
+                        <FaEdit />
+                  </Button>
+                  {/* 
                     onClick={event => handleDelete(event,stu.studentId)}>
                         <RiDeleteBin5Line />
                   </Button>
@@ -81,7 +90,7 @@ const MarksManage =  () => {
             <ButtonToolbar>
                 <Button variant="primary">
                    {/* onClick={handleAdd}> */}
-                Add Student
+                Add Marks
                 </Button>
                 {/* <AddStudentModal show={addModalShow} setUpdated={setIsUpdated}
                 onHide={AddModelClose}></AddStudentModal> */}
