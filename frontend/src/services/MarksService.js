@@ -6,7 +6,7 @@ export function getMarks() {
   }
 
   export function deleteMarks(marksId) {
-    return axios.delete('http://127.0.0.1:8000/students/' + marksId + '/', {
+    return axios.delete('http://127.0.0.1:8000/marks/' + marksId + '/', {
      method: 'DELETE',
      headers: {
        'Accept':'application/json',
