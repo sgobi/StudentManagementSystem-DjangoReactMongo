@@ -19,7 +19,7 @@ const UpdateStudentModal = (props) => {
         (error)=>{
             alert("Failed to Update Student");
         })
-    };
+    }
 
     return(
         <div className="container">
