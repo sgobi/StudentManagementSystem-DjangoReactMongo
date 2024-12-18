@@ -37,4 +37,4 @@ class MarksView(APIView):
     def delete(self, request, pk=None):
         marks_to_delete = Marks.objects.get(marksId=pk)
         marks_to_delete.delete()
-        return JsonResponse("Student Deleted Successfully", safe=False)
+        return JsonResponse("Marks Deleted Successfully", safe=False)

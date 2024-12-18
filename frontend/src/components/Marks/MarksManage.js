@@ -5,12 +5,15 @@ import {Button,ButtonToolbar } from 'react-bootstrap';
 import { FaEdit } from 'react-icons/fa';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 
+
+import AddMarksModel  from './AddMarksModel';
 import { getMarks, deleteMarks } from '../../services/MarksService';
 
 
 const MarksManage =  () => {
   console.log('HelloWorld component rendered');
    const [marks,setMarks] = useState([]);
+  const [addModalShow, setAddModalShow] = useState(false);
     const [isUpdated, setIsUpdated] = useState(false);
    useEffect(() => {
        let mounted = true;
@@ -30,6 +33,12 @@ const MarksManage =  () => {
           setIsUpdated(false);
        }
      }, [isUpdated, marks])
+
+     const handleAdd = (e) => {
+      e.preventDefault();
+      setAddModalShow(true);
+  };
+
     const handleDelete = (e, marksId) => {
         if(window.confirm('Are you sure ?')){
             e.preventDefault();
@@ -43,6 +52,8 @@ const MarksManage =  () => {
             })
         }
     };
+
+    let AddModelClose=()=>setAddModalShow(false);
     return (
       <div className="container-fluid side-container">
         <div className="row side-row" >
@@ -70,14 +81,7 @@ const MarksManage =  () => {
                <td>{mark.Course}</td>
 
                <td>{mark.Marks}</td>
-              
 
-         
-                 
-                 
-                 
-                  
-          
                   <td>
 
                   <Button className="mr-2" variant="danger"    onClick={event => handleDelete(event,mark.marksId)}>
@@ -104,12 +108,11 @@ const MarksManage =  () => {
               </tbody> 
             </Table>
             <ButtonToolbar>
-                <Button variant="primary">
-                   {/* onClick={handleAdd}> */}
+                <Button variant="primary" onClick={handleAdd}> 
                 Add Marks
                 </Button>
-                {/* <AddStudentModal show={addModalShow} setUpdated={setIsUpdated}
-                onHide={AddModelClose}></AddStudentModal> */}
+                 <AddMarksModel show={addModalShow} setUpdated={setIsUpdated}
+                onHide={AddModelClose}></AddMarksModel> 
             </ButtonToolbar>
         </div>
         </div>
