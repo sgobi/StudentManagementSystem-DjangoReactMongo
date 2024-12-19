@@ -8,8 +8,8 @@ const AddStudentModal = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addStudent(e.target)
-        .then((result)=>{
+        addStudent(e.target).then(
+            (result)=>{
             alert(result);
             props.setUpdated(true);
             props.onHide();

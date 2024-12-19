@@ -20,3 +20,15 @@ export function getMarks() {
     })
     .then(response => response.data)
   }
+
+//   export function addMarks(marks)
+//   {
+//     return.axios.post(
+// 'http://127.0.0.1:8000/marks/'
+//       ,{
+//     marksId:null,
+//     studentId:marks.studentId.value,
+//     Course marks.studentId.value,
+//     Marks = models.CharField(max_length=2)
+//   }    ),then(response=>response.data)
+//   }

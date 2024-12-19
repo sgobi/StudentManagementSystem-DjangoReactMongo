@@ -4,8 +4,6 @@ import {Table} from 'react-bootstrap';
 import {Button,ButtonToolbar } from 'react-bootstrap';
 import { FaEdit } from 'react-icons/fa';
 import { RiDeleteBin5Line } from 'react-icons/ri';
-
-
 import AddMarksModel  from './AddMarksModel';
 import { getMarks, deleteMarks } from '../../services/MarksService';
 
